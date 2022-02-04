@@ -4,3 +4,36 @@ h1 {
   color: $primary-color;
   background-color: $bg;
 }
+body{
+  margin:0
+}
+
+#app{
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  height: 100vh;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+
+ a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.container{
+  // padding: m;
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  overflow: hidden;
+}
+header{
+  position: sticky !important;
+  z-index: 1;
+}
+

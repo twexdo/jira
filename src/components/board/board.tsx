@@ -1,9 +1,11 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import * as React from "react";
 import useFirebaseDatabase from "../../hooks/useFirebase";
+import CustomTP from "../../_shared/notSelectableTypography";
 import { Task, TaskFromDB } from "../datas";
 import CustomizedGrid from "./customizedGrid";
 import JiraColumn from "./jiraColumn";
+
 
 
 const Board = () => {
@@ -43,16 +45,16 @@ const Board = () => {
                 mt: 0,
             }} container spacing={2}>
                 <CustomizedGrid item xs={3}>
-                    <Typography variant="h6">IDEEAS</Typography>
+                    <CustomTP variant="h6">IDEEAS</CustomTP>
                 </CustomizedGrid>
                 <CustomizedGrid item xs={3}>
-                    <Typography variant="h6">TASKS</Typography>
+                    <CustomTP variant="h6">TASKS</CustomTP>
                 </CustomizedGrid>
                 <CustomizedGrid item xs={3}>
-                    <Typography variant="h6" >IN PROGRESS</Typography>
+                    <CustomTP variant="h6" >IN PROGRESS</CustomTP>
                 </CustomizedGrid>
                 <CustomizedGrid sx={{ display: "flex" }} item xs={3}>
-                    <Typography variant="h6">DONE</Typography>
+                    <CustomTP variant="h6">DONE</CustomTP>
                 </CustomizedGrid>
             </Grid>
         )

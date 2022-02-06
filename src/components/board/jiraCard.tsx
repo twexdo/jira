@@ -4,11 +4,17 @@ import useFirebaseDatabase from "../../hooks/useFirebase"
 import { getFormatedDate, Task, TaskFromDB } from "../datas"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { red } from "@mui/material/colors";
+import { green, purple, red, yellow } from "@mui/material/colors";
 import DeleteDialog from "../../_shared/dialog";
 type Props = {
     task: TaskFromDB
 }
+
+const COLOR_IDEEA = purple[300]
+const COLOR_TASK = red[300]
+const COLOR_PROGRESS = yellow[300]
+const COLOR_DONE = green[300]
+
 
 const typesz = ["ideea", "task", "progress", "done"]
 
@@ -28,11 +34,21 @@ const JiraCard: React.FC<Props> = ({ task }) => {
     const remove = () => {
         deleteEntery("tasks", task.id)
     }
+
+    const getTaskColor = () => {
+        switch (task.type) {
+            case "task": return COLOR_TASK
+            case "progress": return COLOR_PROGRESS
+            case "done": return COLOR_DONE
+            default: return COLOR_IDEEA
+        }
+    }
+
     return (
         <Card sx={{ mb: 1, minHeight: "150px", }}>
             <CardHeader
                 avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                    <Avatar sx={{ bgcolor: getTaskColor() }} aria-label="recipe">
                         {task.title[0].toUpperCase()}
                     </Avatar>
                 }

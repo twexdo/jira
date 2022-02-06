@@ -42,8 +42,8 @@ const JiraCard: React.FC<Props> = ({ task }) => {
                 title={task.title}
                 subheader={
                     <Card sx={{ display: "flex", boxShadow: "none" }}>
-                        <Typography>{getFormatedDate(task.creationDate)[0]}</Typography>
-                        <Typography ml={2}>{getFormatedDate(task.creationDate)[1]}</Typography>
+                        <Typography variant="subtitle2">{getFormatedDate(task.creationDate)[0]}</Typography>
+                        <Typography variant="subtitle2" ml={2}>{getFormatedDate(task.creationDate)[1]}</Typography>
                     </Card>}
             />
             <CardContent>

@@ -10,7 +10,8 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
-    "start": "webpack serve --hot --mode development --devtool source-map"
+    "start": "webpack serve --hot --mode development --devtool source-map",
+    "deploy": " webpack --mode production && firebase deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",

@@ -13,6 +13,9 @@ const config = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
@@ -21,13 +24,14 @@ const config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.png$/,
+        test: /\.(png|jp(e*)g|svg)$/,
         use: [
           {
             loader: "url-loader",
             options: {
-              mimetype: "image/png",
-            },
+              limit: 8000, // Convert images < 8kb to base64 strings
+              name: 'images/[name].[ext]'
+            }
           },
         ],
       },
@@ -48,7 +52,11 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
- 
+    new CopyPlugin({
+      patterns: [
+        { from: './src/images' }
+      ]
+    }),
     new HtmlWebpackPlugin({
       templateContent: ({ htmlWebpackPlugin }) =>
         '<!DOCTYPE html> <html> <head> <link rel="icon" type="image/png" href="./favicon.png" /> <meta charset="utf-8"><title>' +

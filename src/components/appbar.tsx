@@ -26,15 +26,20 @@ const ResponsiveAppBar = () => {
                         Twexdo's Jira Board
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: "flex" }}>
-                        <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
-                            <Link to="/" >Board</Link>
-                        </Button>
-                        <Button sx={{ my: 2, color: 'white', display: 'block' }} >
-                            <Link to="/create-new-ideea" >Create</Link>
-                        </Button>
-                        <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
-                            <Link to="/about" >About</Link>
-                        </Button>
+                        <Link to="/" >
+                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                Board
+                            </Button>
+                        </Link>
+                        <Link to="/cni" >
+                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                Create
+                            </Button>
+                        </Link><Link to="/about" >
+                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                About
+                            </Button>
+                        </Link>
                     </Box>
                 </Toolbar>
             </Container>

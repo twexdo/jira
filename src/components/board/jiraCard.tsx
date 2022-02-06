@@ -1,4 +1,4 @@
-import { Avatar, Card, CardActions, CardContent, CardHeader, IconButton, Typography } from "@mui/material"
+import { Avatar, Card, CardActionArea, CardActions, CardContent, CardHeader, IconButton, Typography } from "@mui/material"
 import * as React from "react"
 import useFirebaseDatabase from "../../hooks/useFirebase"
 import { getFormatedDate, Task, TaskFromDB } from "../datas"
@@ -29,7 +29,7 @@ const JiraCard: React.FC<Props> = ({ task }) => {
         deleteEntery("tasks", task.id)
     }
     return (
-        <Card sx={{ mb: 1, minHeight: "150px" }}>
+        <Card sx={{ mb: 1, minHeight: "150px", }}>
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -46,11 +46,13 @@ const JiraCard: React.FC<Props> = ({ task }) => {
                         <Typography variant="subtitle2" ml={2}>{getFormatedDate(task.creationDate)[1]}</Typography>
                     </Card>}
             />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    {task.description}
-                </Typography>
-            </CardContent>
+            <CardActionArea>
+                <CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                        {task.description}
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
             <CardActions sx={{ display: "flex", justifyContent: "space-between" }} disableSpacing>
                 <IconButton onClick={back} sx={{ visibility: task.type != "ideea" ? "visible" : "hidden" }} aria-label="back">
                     <ArrowBackIosNewIcon />
@@ -59,7 +61,8 @@ const JiraCard: React.FC<Props> = ({ task }) => {
                     <ArrowForwardIosIcon />
                 </IconButton>
             </CardActions>
-        </Card>)
+
+        </Card >)
 
 
 }

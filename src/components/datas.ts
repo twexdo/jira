@@ -3,7 +3,7 @@ export type Task = {
     description: string,
     creationDate: string,
     type: TaskType,
-    project?: string,//
+    project: number,
 
 }
 export type TaskType = "ideea" | "task" | "progress" | "done"
@@ -22,4 +22,18 @@ export const getFormatedDate = (date: string) => {
     const h = hour + ":" + minutes
     const d = day + ' ' + month + ',' + year;
     return [h, d]
+}
+
+export type Project = {
+    id: number
+    name: string
+    color?: "string"
+    front?: {
+        name: string
+        git: string
+    }
+    back?: {
+        name: string
+        git: string
+    }
 }

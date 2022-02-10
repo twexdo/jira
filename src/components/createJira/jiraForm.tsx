@@ -35,7 +35,8 @@ const JiraForm: React.FC<Props> = ({ handleCreateTask }) => {
                 title,
                 description,
                 creationDate: date,
-                type: "ideea"
+                type: "ideea",
+                project: 1//TODO 
             })
         }
 

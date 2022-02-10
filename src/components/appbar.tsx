@@ -35,7 +35,13 @@ const ResponsiveAppBar = () => {
                             <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
                                 Create
                             </Button>
-                        </Link><Link to="/about" >
+                        </Link>
+                        <Link to="/all-projects" >
+                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                All Projects
+                            </Button>
+                        </Link>
+                        <Link to="/about" >
                             <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
                                 About
                             </Button>

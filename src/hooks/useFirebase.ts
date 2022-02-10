@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import { child, get, getDatabase, onValue, push, ref, set } from "firebase/database";
 import { Task, TaskFromDB } from "../components/datas";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -10,7 +10,8 @@ type HookOutput = [
     write: (location: string, object: any) => void,
     listen: (location: string, callBack: (data: any) => void) => void,
     update: (location: string, object: any) => void,
-    deleteEntery: (location: string, id: string) => void
+    deleteEntery: (location: string, id: string) => void,
+    getData: (location: string, callBack: (data: any) => void) => void,
 ]
 export default function useFirebaseDatabase(): HookOutput {
     const firebaseConfig = {
@@ -47,6 +48,20 @@ export default function useFirebaseDatabase(): HookOutput {
         set(ref(db, location + "/" + id), null)
 
     }
+    function getData(location: string, callBack: (data: any) => void) {
+        get(ref(db, location)).then((snapshot) => {
+            if (snapshot.exists()) {
+                callBack(snapshot.val())
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
 
-    return [write, listen, update, deleteEntery]
+
+
+
+    return [write, listen, update, deleteEntery, getData]
 }

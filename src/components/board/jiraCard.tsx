@@ -1,11 +1,12 @@
 import { Avatar, Card, CardActionArea, CardActions, CardContent, CardHeader, IconButton, Typography } from "@mui/material"
 import * as React from "react"
 import useFirebaseDatabase from "../../hooks/useFirebase"
-import { getFormatedDate, Task, TaskFromDB } from "../datas"
+import { getFormatedDate, Project, Task, TaskFromDB } from "../datas"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { green, purple, red, yellow } from "@mui/material/colors";
 import DeleteDialog from "../../_shared/dialog";
+import CBadge from "../../_shared/badge";
 type Props = {
     task: TaskFromDB
 }
@@ -19,9 +20,19 @@ const COLOR_DONE = green[300]
 const typesz = ["ideea", "task", "progress", "done"]
 
 const JiraCard: React.FC<Props> = ({ task }) => {
-    const [, , update, deleteEntery] = useFirebaseDatabase()
+    const [, , update, deleteEntery, geter] = useFirebaseDatabase()
 
+    const [taskP, setTaskP] = React.useState<Project>()
 
+    React.useEffect(() => {
+        geter("projects", (data) => {
+            const curentProject = (Object.values(data) as Project[]).find(x => x?.id == task.project)
+            console.log("adi0", data)
+            console.log("adi1", Object.values(data))
+            console.log("adi2", curentProject)
+            setTaskP(curentProject)
+        })
+    }, [])
 
     const next = () => {
         const idx = typesz.indexOf(task.type) + 1
@@ -69,6 +80,9 @@ const JiraCard: React.FC<Props> = ({ task }) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
+            <CardContent>
+                <CBadge>{taskP?.name}</CBadge>
+            </CardContent>
             <CardActions sx={{ display: "flex", justifyContent: "space-between" }} disableSpacing>
                 <IconButton onClick={back} sx={{ visibility: task.type != "ideea" ? "visible" : "hidden" }} aria-label="back">
                     <ArrowBackIosNewIcon />

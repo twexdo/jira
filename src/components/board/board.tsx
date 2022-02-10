@@ -6,44 +6,44 @@ import { Task, TaskFromDB } from "../datas";
 import CustomizedGrid from "./customizedGrid";
 import JiraColumn from "./jiraColumn";
 
-
-
 const Board = () => {
+    const [, listen] = useFirebaseDatabase();
 
-    const [, listen] = useFirebaseDatabase()
-
-
-    const [ideeas, setIdeeas] = React.useState<TaskFromDB[]>([])
-    const [tasks, setTasks] = React.useState<TaskFromDB[]>([])
-    const [progress, setProgress] = React.useState<TaskFromDB[]>([])
-    const [done, setDone] = React.useState<TaskFromDB[]>([])
+    const [ideeas, setIdeeas] = React.useState<TaskFromDB[]>([]);
+    const [tasks, setTasks] = React.useState<TaskFromDB[]>([]);
+    const [progress, setProgress] = React.useState<TaskFromDB[]>([]);
+    const [done, setDone] = React.useState<TaskFromDB[]>([]);
 
     React.useEffect(() => {
         listen("tasks", (tasks) => {
-            let list: TaskFromDB[] = []
+            let list: TaskFromDB[] = [];
             if (tasks) {
-                const entries = Object.entries(tasks)
-                list = entries.map(x => {
+                const entries = Object.entries(tasks);
+                list = entries.map((x) => {
                     const key = x[0];
                     const task = x[1] as Task;
                     return { id: key, ...task };
-                }) as TaskFromDB[]
+                }) as TaskFromDB[];
             }
-            setIdeeas((list.filter(x => x.type == "ideea")))
-            setTasks((list.filter(x => x.type == "task")))
-            setProgress((list.filter(x => x.type == "progress")))
-            setDone((list.filter(x => x.type == "done")))
-        })
-    }, [])
+            setIdeeas(list.filter((x) => x.type == "ideea"));
+            setTasks(list.filter((x) => x.type == "task"));
+            setProgress(list.filter((x) => x.type == "progress"));
+            setDone(list.filter((x) => x.type == "done"));
+        });
+    }, []);
 
     const renderHeader = () => {
         return (
-            <Grid sx={{
-                maxWidth: "100vw",
-                ml: 0,
-                bgcolor: "rgba(174, 196, 199, 0.79)",
-                mt: 0,
-            }} container spacing={2}>
+            <Grid
+                sx={{
+                    maxWidth: "100vw",
+                    ml: 0,
+                    bgcolor: "rgba(174, 196, 199, 0.79)",
+                    mt: 0,
+                }}
+                container
+                spacing={2}
+            >
                 <CustomizedGrid item xs={3}>
                     <CustomTP variant="h6">IDEEAS</CustomTP>
                 </CustomizedGrid>
@@ -51,39 +51,42 @@ const Board = () => {
                     <CustomTP variant="h6">TASKS</CustomTP>
                 </CustomizedGrid>
                 <CustomizedGrid item xs={3}>
-                    <CustomTP variant="h6" >IN PROGRESS</CustomTP>
+                    <CustomTP variant="h6">IN PROGRESS</CustomTP>
                 </CustomizedGrid>
                 <CustomizedGrid sx={{ display: "flex" }} item xs={3}>
                     <CustomTP variant="h6">DONE</CustomTP>
                 </CustomizedGrid>
             </Grid>
-        )
-    }
+        );
+    };
 
     const renderBody = () => {
         return (
-            <Grid sx={{
-                width: "100vw",
-                bgcolor: "rgba(224, 247, 250, 0.79)",
-                flex: 1,
-                ml: 0,
-                mt: 0
-            }
-            } container spacing={2} >
+            <Grid
+                sx={{
+                    width: "100vw",
+                    bgcolor: "rgba(224, 247, 250, 0.79)",
+                    flex: 1,
+                    ml: 0,
+                    mt: 0,
+                }}
+                container
+                spacing={2}
+            >
                 <JiraColumn col={ideeas} />
                 <JiraColumn col={tasks} />
                 <JiraColumn col={progress} />
                 <JiraColumn col={done} />
-            </Grid >
-        )
+            </Grid>
+        );
+    };
 
-    }
+    return (
+        <div className="container">
+            {renderHeader()}
+            {renderBody()}
+        </div>
+    );
+};
 
-
-    return <div className="container">
-        {renderHeader()}
-        {renderBody()}
-    </div>
-}
-
-export default Board
+export default Board;

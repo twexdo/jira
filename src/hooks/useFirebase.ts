@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { child, get, getDatabase, onValue, push, ref, set } from "firebase/database";
+import { get, getDatabase, onValue, push, ref, set } from "firebase/database";
 import { Task, TaskFromDB } from "../components/datas";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

@@ -1,4 +1,4 @@
-import { Avatar, Card, CardActionArea, CardActions, CardContent, CardHeader, IconButton, Typography } from "@mui/material"
+import { Avatar, Card, CardActionArea, CardActions, CardContent, CardHeader, IconButton, Tooltip, Typography } from "@mui/material"
 import * as React from "react"
 import useFirebaseDatabase from "../../hooks/useFirebase"
 import { getFormatedDate, Project, Task, TaskFromDB } from "../datas"
@@ -56,7 +56,17 @@ const JiraCard: React.FC<Props> = ({ task }) => {
     }
 
     return (
-        <Card sx={{ mb: 1, minHeight: "150px", }}>
+        <Card sx={{
+            mb: 1,
+            minHeight: "100px",
+            ".MuiCardHeader-title": {
+                display: "flex",
+                cursor: "pointer"
+            },
+            ".MuiCardHeader-content": {
+                overflow: "auto"
+            }
+        }}>
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: getTaskColor() }} aria-label="recipe">
@@ -66,29 +76,33 @@ const JiraCard: React.FC<Props> = ({ task }) => {
                 action={
                     <DeleteDialog onConfirm={remove} />
                 }
-                title={task.title}
+                title={
+                    <>
+                        <CBadge content={taskP?.name.toUpperCase() ?? ""} />
+                        <Tooltip id="ttip" arrow placement="top" title={task.title ?? ""}>
+                            <Typography width={"60%"} textOverflow="ellipsis" noWrap variant="subtitle1" sx={{ display: "inline", whiteSpace: "nowrap" }} fontSize="small"> {task.title.replace("Jira -", "")}</Typography>
+                        </Tooltip>
+                    </>
+                }
                 subheader={
                     <Card sx={{ display: "flex", boxShadow: "none" }}>
-                        <Typography variant="subtitle2">{getFormatedDate(task.creationDate)[0]}</Typography>
-                        <Typography variant="subtitle2" ml={2}>{getFormatedDate(task.creationDate)[1]}</Typography>
+                        <Typography fontSize="small">{getFormatedDate(task.creationDate)[0]}</Typography>
+                        <Typography fontSize="small" ml={2}>{getFormatedDate(task.creationDate)[1]}</Typography>
                     </Card>}
             />
             <CardActionArea>
                 <CardContent>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography fontSize="small" variant="body2" color="text.secondary">
                         {task.description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardContent>
-                <CBadge>{taskP?.name}</CBadge>
-            </CardContent>
             <CardActions sx={{ display: "flex", justifyContent: "space-between" }} disableSpacing>
-                <IconButton onClick={back} sx={{ visibility: task.type != "ideea" ? "visible" : "hidden" }} aria-label="back">
-                    <ArrowBackIosNewIcon />
+                <IconButton onClick={back} sx={{ visibility: task.type != "ideea" ? "visible" : "hidden" }} >
+                    <ArrowBackIosNewIcon fontSize="small" />
                 </IconButton>
                 <IconButton onClick={next} sx={{ visibility: task.type != "done" ? "visible" : "hidden" }} aria-label="forward">
-                    <ArrowForwardIosIcon />
+                    <ArrowForwardIosIcon fontSize="small" />
                 </IconButton>
             </CardActions>
 

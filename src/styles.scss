@@ -1,40 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap");
 $primary-color: white;
 $bg: black;
 h1 {
-  color: $primary-color;
-  background-color: $bg;
+    color: $primary-color;
+    background-color: $bg;
 }
-body{
-  margin:0
-}
-
-#app{
-  display: flex;
-  width: 100vw;
-  flex-direction: column;
-  height: 100vh;
+body {
+    margin: 0;
 }
 
-*{
-  box-sizing: border-box;
+#app {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    height: 100vh;
 }
 
-
- a {
-  color: #FFFFFF;
-  text-decoration: none;
+* {
+    box-sizing: border-box;
 }
 
-.container{
-  // padding: m;
-  display: flex;
-  flex-direction: column;
-  flex:1;
-  overflow: hidden;
-}
-header{
-  position: sticky !important;
-  z-index: 1;
+a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
+.container {
+    // padding: m;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+header {
+    position: sticky !important;
+    z-index: 1;
+}
+
+#ttip > .MuiTooltip-tooltip {
+    font-size: small;
+}
+.MuiAvatar-circular {
+    width: 35px;
+    height: 35px;
+}
+
+.active {
+    background-color: aqua;
+}
+.not-active {
+    background-color: springgreen;
+}

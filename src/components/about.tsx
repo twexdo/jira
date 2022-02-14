@@ -8,10 +8,14 @@ const About = () => {
                 fontWeight: "fontWeightMedium",
                 fontFamily: "New Tegomin",
                 border: "1px solid black",
-                padding: 1
+                padding: 1,
+                userSelect: "none"
             }}>
             This program was made by <Link underline="none" href="https://www.linkedin.com/in/adrian-vasile-stef-86b936192/"  > @Stef-Vasile-Adrian.</Link><br /><br />
             Jira-Website is a copy of jira ideea and is helping programmers to get a better planning with their programming.
+            <br /><br />
+            SPECS:<br />
+            minimum height suported : 1280px
 
         </Typography>
     </Container >

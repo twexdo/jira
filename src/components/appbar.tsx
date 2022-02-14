@@ -9,9 +9,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const ResponsiveAppBar = () => {
-
-
+type Props = {
+    user?: string
+}
+const ResponsiveAppBar: React.FC<Props> = ({ user }) => {
 
     return (
         <AppBar position="static">
@@ -23,27 +24,44 @@ const ResponsiveAppBar = () => {
                         component="div"
                         sx={{ pl: 0, ml: 1, mr: 2, display: "flex" }}
                     >
-                        Twexdo's Jira Board
+                        {user || "Twexdo"}'s Jira Board
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: "flex" }}>
-                        <Link to="/" >
-                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
-                                Board
-                            </Button>
-                        </Link>
-                        <Link to="/cni" >
-                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
-                                Create
-                            </Button>
-                        </Link>
-                        <Link to="/all-projects" >
-                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
-                                All Projects
-                            </Button>
-                        </Link>
-                        <Link to="/about" >
-                            <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
-                                About
+                        {
+                            !user && <Link to="/" >
+                                <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                    Login
+                                </Button>
+                            </Link>
+                        }
+                        {
+                            user && <>
+                                <Link to="/" >
+                                    <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                        Board
+                                    </Button>
+                                </Link>
+                                <Link to="/cni" >
+                                    <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                        Create
+                                    </Button>
+                                </Link>
+                                <Link to="/all-projects" >
+                                    <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                        All Projects
+                                    </Button>
+                                </Link>
+                                <Link to="/about" >
+                                    <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                        About
+                                    </Button>
+                                </Link>
+
+                            </>
+                        }
+                        <Link to="/test" >
+                            <Button sx={{ my: 2, color: 'red', display: 'block' }}  >
+                                TEST
                             </Button>
                         </Link>
                     </Box>

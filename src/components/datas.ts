@@ -3,7 +3,7 @@ export type Task = {
     description: string,
     creationDate: string,
     type: TaskType,
-    project: number,
+    project: string,
 
 }
 export type TaskType = "ideea" | "task" | "progress" | "done"
@@ -25,7 +25,7 @@ export const getFormatedDate = (date: string) => {
 }
 
 export type Project = {
-    id: number
+    id: number | string
     name: string
     color?: "string"
     front?: {

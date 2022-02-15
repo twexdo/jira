@@ -22,6 +22,7 @@ const JiraForm: React.FC<Props> = ({ handleCreateTask }) => {
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
+    const [projectAssign, setProjectAssign] = useState("")
     const [errors, setErrors] = useState<string[]>([])
 
     const onSubmit = () => {
@@ -36,7 +37,7 @@ const JiraForm: React.FC<Props> = ({ handleCreateTask }) => {
                 description,
                 creationDate: date,
                 type: "ideea",
-                project: 1//TODO 
+                project: projectAssign
             })
         }
 
@@ -46,6 +47,13 @@ const JiraForm: React.FC<Props> = ({ handleCreateTask }) => {
         setTitle(e.target.value)
         if (e.target.value.length < 3) {
             setErrors(errors => errors.filter(x => x != "title"))
+        }
+    }
+
+    const handleChangePA = (e: any) => {
+        setProjectAssign(e.target.value)
+        if (e.target.value.length < 3) {
+            setErrors(errors => errors.filter(x => x != "pa"))
         }
     }
 
@@ -78,13 +86,27 @@ const JiraForm: React.FC<Props> = ({ handleCreateTask }) => {
                 placeholder="Create jira board"
             />
             <TextField
+                sx={{
+                    maxWidth: "20em",
+                }}
+                value={projectAssign}
+                onChange={handleChangePA}
+                autoFocus
+                className={style.textFIeld}
+                required
+                error={errors.includes("pa")}
+                id="outlined-required"
+                label="Project"
+                placeholder="eg.: jira "
+            />
+            <TextField
                 placeholder="Create jira board  like the jira you have at work. Jira must have 4 collumns..."
                 className={style.textFIeld}
                 id="outlined-required"
                 label="Description"
                 error={errors.includes("description")}
                 value={description}
-                onChange={(e: any) => setDescription(e.target.value)}
+                onChange={handleChangeDescription}
             />
             <Box display="flex" flexDirection="row-reverse">
                 <Button onClick={onSubmit} size="medium" variant="contained" >

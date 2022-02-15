@@ -37,6 +37,7 @@ const App: React.FC<Props> = ({ }) => {
         {!user && <Route path="/" element={<AutenthicatePage login={login} user={user} />} />}
         {user &&
           <>
+            <Route path="/" element={<Board />} />
             <Route path="/cni" element={<CreateJiraIdeea />} />
             <Route path="/all-projects" element={<AllProjects />} />
             <Route path="/about" element={<About />} />

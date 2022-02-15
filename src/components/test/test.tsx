@@ -73,10 +73,11 @@ const Test = () => {
     >
         <div style={{ flex: .8 }} className="main">
             <h1 style={{
-                width: "100%",
-                height: "100%",
+                width: "90%",
+                height: "90%",
                 textAlign: "center",
-                lineHeight: "50vh"
+                lineHeight: "50vh",
+                margin: "1em"
             }}>
                 {curentNR}
             </h1>

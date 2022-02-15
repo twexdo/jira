@@ -7,13 +7,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-
+import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
+import { Tooltip } from '@material-ui/core';
+import useUser from '../hooks/useUser';
 
 type Props = {
     user?: string
 }
 const ResponsiveAppBar: React.FC<Props> = ({ user }) => {
-
+    const [, , signOut] = useUser()
     return (
         <AppBar position="static">
             <Container sx={{ ml: 0 }} maxWidth="xl">
@@ -59,11 +61,21 @@ const ResponsiveAppBar: React.FC<Props> = ({ user }) => {
 
                             </>
                         }
-                        <Link to="/test" >
+                        <Link style={{ marginLeft: "auto", }} to="/test" >
                             <Button sx={{ my: 2, color: 'red', display: 'block' }}  >
-                                TEST
+                                (Swiper.js example)
                             </Button>
                         </Link>
+
+                        {
+                            user && <Link onClick={signOut} to="/" >
+                                <Tooltip title="Sign out">
+                                    <Button sx={{ my: 2, color: 'white', display: 'block' }}  >
+                                        <SettingsPowerIcon />
+                                    </Button>
+                                </Tooltip>
+                            </Link>
+                        }
                     </Box>
                 </Toolbar>
             </Container>

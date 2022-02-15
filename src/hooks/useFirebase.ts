@@ -13,6 +13,10 @@ type HookOutput = [
     deleteEntery: (location: string, id: string) => void,
     getData: (location: string, callBack: (data: any) => void) => void,
 ]
+
+const getUFC = () => {
+    return localStorage.getItem("userToken")
+}
 export default function useFirebaseDatabase(): HookOutput {
     const firebaseConfig = {
         apiKey: "AIzaSyDC0DnSmtTSK5fD62I11pfLYGeYTPGvvs4",
@@ -29,27 +33,26 @@ export default function useFirebaseDatabase(): HookOutput {
     const db = getDatabase(app)
 
     function write(location: string, object: Task) {
-        push(ref(db, location), object)
+
+        push(ref(db, getUFC() + "/" + location), object)
         // set(ref(db, location), object);
     }
     function listen(location: string, callBack: (data: any) => void) {
-        const reference = ref(db, location);
+        const reference = ref(db, getUFC() + "/" + location);
         onValue(reference, (snapshot) => {
             const data = snapshot.val();
-            console.log("adi", data)
             callBack(data)
         });
     }
     function update(location: string, object: TaskFromDB) {
-        console.log(location, object)
-        set(ref(db, location + "/" + object.id), { ...object, id: null })
+        set(ref(db, getUFC() + "/" + location + "/" + object.id), { ...object, id: null })
     }
     function deleteEntery(location: string, id: string) {
-        set(ref(db, location + "/" + id), null)
+        set(ref(db, getUFC() + "/" + location + "/" + id), null)
 
     }
     function getData(location: string, callBack: (data: any) => void) {
-        get(ref(db, location)).then((snapshot) => {
+        get(ref(db, getUFC() + "/" + location)).then((snapshot) => {
             if (snapshot.exists()) {
                 callBack(snapshot.val())
             } else {

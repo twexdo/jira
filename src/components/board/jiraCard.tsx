@@ -27,9 +27,6 @@ const JiraCard: React.FC<Props> = ({ task }) => {
     React.useEffect(() => {
         geter("projects", (data) => {
             const curentProject = (Object.values(data) as Project[]).find(x => x?.id == task.project)
-            console.log("adi0", data)
-            console.log("adi1", Object.values(data))
-            console.log("adi2", curentProject)
             setTaskP(curentProject)
         })
     }, [])
@@ -78,7 +75,7 @@ const JiraCard: React.FC<Props> = ({ task }) => {
                 }
                 title={
                     <>
-                        <CBadge content={taskP?.name.toUpperCase() ?? ""} />
+                        <CBadge content={taskP?.name.toUpperCase() ?? task.project} />
                         <Tooltip id="ttip" arrow placement="top" title={task.title ?? ""}>
                             <Typography width={"60%"} textOverflow="ellipsis" noWrap variant="subtitle1" sx={{ display: "inline", whiteSpace: "nowrap" }} fontSize="small"> {task.title.replace("Jira -", "")}</Typography>
                         </Tooltip>

@@ -8,6 +8,7 @@ import ResponsiveAppBar from './components/appbar';
 import AutenthicatePage from './components/autenticate';
 import Board from './components/board/board';
 import CreateJiraIdeea from './components/createJira/createJira';
+import CreateJiraProject from './components/createProject/createProject';
 import Test from './components/test/test';
 import useUser from './hooks/useUser';
 interface Props {
@@ -17,7 +18,6 @@ interface Props {
 const App: React.FC<Props> = ({ }) => {
 
   const [user, login] = useUser()
-
 
   return (
     <BrowserRouter>
@@ -39,6 +39,7 @@ const App: React.FC<Props> = ({ }) => {
           <>
             <Route path="/" element={<Board />} />
             <Route path="/cni" element={<CreateJiraIdeea />} />
+            <Route path="/cnp" element={<CreateJiraProject />} />
             <Route path="/all-projects" element={<AllProjects />} />
             <Route path="/about" element={<About />} />
           </>

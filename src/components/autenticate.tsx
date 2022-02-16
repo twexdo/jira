@@ -96,7 +96,7 @@ const AutenthicatePage: React.FC<Props> = ({ login, user }) => {
         </div>
         <div className={container}>
             <div className={textes}>
-                <Typography fontWeight="fontWeightBold" variant="h2">Hellow dear user!</Typography>
+                <Typography fontWeight="fontWeightBold" variant="h2">Hello dear user!</Typography>
                 <Typography fontWeight="fontWeightBold" variant="h5">Please log in to enable the features of this app.</Typography>
             </div>
             <Button className={buttons} sx={{ color: "white" }} variant="contained" onClick={() => { login("Adrian") }}>LOGIN</Button>

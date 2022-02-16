@@ -3,12 +3,11 @@ import { green, grey } from "@mui/material/colors"
 import * as React from "react"
 
 type Props = {
-    color?: number
+    color?: string
     content: string
 }
 
-const CBadge: React.FC<Props> = ({ content }) => {
-
+const CBadge: React.FC<Props> = ({ content, color }) => {
 
 
     return <Typography
@@ -16,7 +15,7 @@ const CBadge: React.FC<Props> = ({ content }) => {
         fontSize="small"
         textOverflow="ellipsis"
         sx={{
-            background: green[200],
+            background: color || green[200],
             fontSize: 11,
             padding: "3px",
             paddingRight: "8px",
@@ -31,7 +30,7 @@ const CBadge: React.FC<Props> = ({ content }) => {
         }
         }
     >
-        {content.toUpperCase()}
+        {content.toString().toUpperCase()}
     </Typography >
 
 }

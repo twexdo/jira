@@ -25,9 +25,10 @@ export const getFormatedDate = (date: string) => {
 }
 
 export type Project = {
+    creationDate: string
     id: number | string
     name: string
-    color?: "string"
+    color?: string
     front?: {
         name: string
         git: string

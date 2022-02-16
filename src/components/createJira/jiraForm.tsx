@@ -97,7 +97,7 @@ const JiraForm: React.FC<Props> = ({ handleCreateTask }) => {
                 error={errors.includes("pa")}
                 id="outlined-required"
                 label="Project"
-                placeholder="eg.: jira "
+                placeholder="this will be changed in future, with a dropdown with current projects... "
             />
             <TextField
                 placeholder="Create jira board  like the jira you have at work. Jira must have 4 collumns..."

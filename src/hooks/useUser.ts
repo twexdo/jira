@@ -38,7 +38,6 @@ const useUser = (): [string, (name: string) => void, () => void] => {
     const persistLogin = () => {
         setPersistence(auth, browserLocalPersistence)
             .then((x) => {
-                console.log(x)
                 const provider = new GoogleAuthProvider();
                 // Existing and future Auth states are now persisted in the current
                 // session only. Closing the window would clear any existing state even
@@ -64,7 +63,6 @@ const useUser = (): [string, (name: string) => void, () => void] => {
                 // The signed-in user info.
                 const user = result.user;
                 // ...
-                console.log(user)
                 setUSer(user.displayName ?? "")
                 setUFC(user.uid)
             }).catch((error) => {

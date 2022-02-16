@@ -56,7 +56,7 @@ export default function useFirebaseDatabase(): HookOutput {
             if (snapshot.exists()) {
                 callBack(snapshot.val())
             } else {
-                console.log("No data available");
+                //
             }
         }).catch((error) => {
             console.error(error);

@@ -18,14 +18,8 @@ const CreateJiraIdeea = () => {
     const navigate = useNavigate();
     const [write, listen] = useFirebaseDatabase()
 
-    React.useEffect(() => {
-        listen("tasks", (tasks: any) => {
-            console.log(tasks)
-        })
-    }, [])
 
     const handleCreateTask = (task: Task) => {
-        console.log("New task :", task)
         write("tasks/", task)
         navigate('/')
 

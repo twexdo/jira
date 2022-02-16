@@ -51,7 +51,6 @@ const JiraCard: React.FC<Props> = ({ task }) => {
             default: return COLOR_IDEEA
         }
     }
-
     return (
         <Card sx={{
             mb: 1,
@@ -75,7 +74,7 @@ const JiraCard: React.FC<Props> = ({ task }) => {
                 }
                 title={
                     <>
-                        <CBadge content={taskP?.name.toUpperCase() ?? task.project} />
+                        <CBadge color={taskP?.color} content={taskP?.name.toUpperCase() ?? ""} />
                         <Tooltip id="ttip" arrow placement="top" title={task.title ?? ""}>
                             <Typography width={"60%"} textOverflow="ellipsis" noWrap variant="subtitle1" sx={{ display: "inline", whiteSpace: "nowrap" }} fontSize="small"> {task.title.replace("Jira -", "")}</Typography>
                         </Tooltip>
